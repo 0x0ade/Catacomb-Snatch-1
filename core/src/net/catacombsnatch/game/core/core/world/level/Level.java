@@ -109,7 +109,7 @@ public class Level extends World implements Tickable, Finishable {
 	 * Sets a tile at the given x and y coordinate.
 	 * If x and / or y are out of the level boundaries, nothing is being set.
 	 * 
-	 * @param Tile The tile object to set
+	 * @param tile The tile object to set
 	 * @param x The x position
 	 * @param y The y position
 	 */

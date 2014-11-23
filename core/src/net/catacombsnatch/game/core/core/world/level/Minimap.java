@@ -24,8 +24,9 @@ public class Minimap implements Renderable {
 		this.view = view;
 		
 		sprite = new Sprite(Art.skin.getAtlas().findRegion("minimap-frame"));
-		
-		map = new Texture(new Pixmap( 40, 40, Pixmap.Format.RGBA8888 ), true);
+
+        pm = new Pixmap(40, 40, Pixmap.Format.RGBA8888);
+		map = new Texture(pm, false);
 	}
 	
 	Rectangle vp = new Rectangle();
@@ -41,8 +42,6 @@ public class Minimap implements Renderable {
 		vp.x -= Screen.getWidth()/2;
 		vp.y += Screen.getHeight()/2;
 		
-		pm = new Pixmap(40, 40, Pixmap.Format.RGBA8888);
-		
 		for (Tile tile : level.getTiles()) {
 			if(tile == null) continue;
 			
@@ -53,9 +52,7 @@ public class Minimap implements Renderable {
 		// TODO add entity icons
 		
 		map.draw(pm, 0, 0);
-		
-		pm.dispose();
-		
+
 		scene.getSpriteBatch().draw(map, sprite.getX() + 6, sprite.getY() + 5 + 80, 80, -80);
 	}
 	

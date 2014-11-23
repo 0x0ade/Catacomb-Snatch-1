@@ -34,10 +34,10 @@ public class CatacombSnatchGameDesktop {
 
                         Pixmap pixmap = new Pixmap(size, size, Pixmap.Format.RGBA8888);
                         pixmap.setColor(1f, 1f, 1f, 1f);
-                        pixmap.drawLine(center, 0, center, center-1);
-                        pixmap.drawLine(center, center+1, center, size);
-                        pixmap.drawLine(0, center, center-1, center);
-                        pixmap.drawLine(center+1, center, size, center);
+                        pixmap.drawLine(center, 0, center, center-2);
+                        pixmap.drawLine(center, center+2, center, size);
+                        pixmap.drawLine(0, center, center-2, center);
+                        pixmap.drawLine(center+2, center, size, center);
 
                         Gdx.input.setCursorImage(pixmap, center, center);
                     }

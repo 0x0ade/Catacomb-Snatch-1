@@ -75,6 +75,7 @@ public class GameScene extends Scene {
 			// Prepare views for rendering and level initialization
 			if(views == null) {
 				Level level = campaign.getCurrentLevel();
+                level.initialize(); // Initialize renderer(s) and Artemis world
 				views = new ArrayList<View>();
 				
 				for(Player player : campaign.getPlayers()) {
@@ -89,8 +90,6 @@ public class GameScene extends Scene {
 				}
 				
 				update(true); // Update viewports
-				
-				level.initialize(); // Initialize renderer(s)
 			}
 
 			// Player movement
