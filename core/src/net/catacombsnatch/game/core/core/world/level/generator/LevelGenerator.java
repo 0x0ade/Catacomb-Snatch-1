@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Array;
 
 public abstract class LevelGenerator {
 	protected Random random;
-	protected List<GeneratorOption<?>> options;
+	protected Array<GeneratorOption<?>> options;
 	
 	
 	public LevelGenerator() {
@@ -25,7 +25,7 @@ public abstract class LevelGenerator {
 	public LevelGenerator(Random r) {
 		random = r;
 		
-		options = new ArrayList<GeneratorOption<?>>();
+		options = new Array<GeneratorOption<?>>();
 	}
 	
 	/**
@@ -48,14 +48,14 @@ public abstract class LevelGenerator {
 		return random;
 	}
 	
-	public Collection<String> getOptions() {
-		List<String> keys = new ArrayList<String>();
+	public Array<String> getOptions() {
+        Array<String> keys = new Array<String>();
 		
 		for(GeneratorOption<?> option : options) {
 			keys.add(option.getName());
 		}
 		
-		return Collections.unmodifiableCollection(keys);
+		return keys;
 	}
 	
 	public GeneratorOption<?> getOption(String name) {

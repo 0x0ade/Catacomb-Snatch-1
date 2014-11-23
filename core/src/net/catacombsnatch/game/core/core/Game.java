@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.badlogic.gdx.graphics.g2d.CpuSpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.catacombsnatch.game.core.core.resource.options.DefaultOptions;
 import net.catacombsnatch.game.core.core.scene.Scene;
 import net.catacombsnatch.game.core.core.screen.Screen;

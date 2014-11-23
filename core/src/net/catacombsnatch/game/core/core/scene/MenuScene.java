@@ -74,7 +74,8 @@ public abstract class MenuScene extends Scene {
 				break;
 				
 			case BACK:
-				if (SceneManager.getCurrent().getClass() != TitleScreen.class){
+                //Typecast to Object due to an unsolved bug in IntelliJ
+				if (((Object) SceneManager.getCurrent()).getClass() != TitleScreen.class){
 					SceneManager.exit();
 				}
 				

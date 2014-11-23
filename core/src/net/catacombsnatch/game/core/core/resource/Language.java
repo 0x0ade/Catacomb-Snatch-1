@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import net.catacombsnatch.game.core.core.util.FileUtil;
 
 import com.badlogic.gdx.Gdx;
@@ -19,19 +21,19 @@ public class Language {
 	public final static String DIRECTORY = "lang/";
 	public final static String DEFAULT = "en";
 	
-	protected final static Map<String, LanguageEntry> languages;
-	protected final static List<Locale> vanilla;
+	protected final static ObjectMap<String, LanguageEntry> languages;
+	protected final static Array<Locale> vanilla;
 	protected static LanguageEntry last;
 	protected static String language;
 	
 	static {
-		languages = new HashMap<String, LanguageEntry>();
-		vanilla = new ArrayList<Locale>();
+		languages = new ObjectMap<String, LanguageEntry>();
+		vanilla = new Array<Locale>();
 		
 		try {
 			Gdx.app.debug(TAG, "Reading default languages");
 			
-			List<String> langs = FileUtil.readSimpleFile(Gdx.files.internal(DIRECTORY + "index"));
+			Array<String> langs = FileUtil.readSimpleFile(Gdx.files.internal(DIRECTORY + "index"));
 			
 			for(String s : langs) {
 				FileHandle file = Gdx.files.internal(DIRECTORY + s);

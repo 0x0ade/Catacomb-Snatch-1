@@ -2,6 +2,9 @@ package net.catacombsnatch.game.core.core.scene;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import net.catacombsnatch.game.core.core.event.EventManager;
 import net.catacombsnatch.game.core.core.resource.Art;
 import net.catacombsnatch.game.core.core.screen.Screen;
@@ -28,6 +31,10 @@ public class Scene extends Stage implements Updateable, Tickable {
 	private boolean drawBackground = true;
 	private final Rectangle currentActorRect = new Rectangle();
 	private Vector2 mousePos = new Vector2();
+
+    public Scene() {
+        super(new ScreenViewport());
+    }
 	
 	/**
 	 * Called whenever this scene is getting created (or opened again).
@@ -56,6 +63,11 @@ public class Scene extends Stage implements Updateable, Tickable {
 	 */
 	public void exit() {
 		this.dispose();
+        if (background != null && !background.isManaged()) {
+            //Probably a texture created on the fly used only here.
+            //It should be safe to dispose such a texture.
+            background.dispose();
+        }
 		exit = true;
 	}
 	

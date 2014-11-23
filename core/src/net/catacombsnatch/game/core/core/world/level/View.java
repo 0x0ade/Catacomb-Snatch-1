@@ -88,6 +88,14 @@ public class View implements Renderable, Updateable {
 	public void setViewport(Rectangle view) {
 		viewport = view;
 	}
+
+    public void setViewport(float x, float y, float w, float h) {
+        if (viewport == null) {
+            viewport = new Rectangle(x, y, w, h);
+        } else {
+            viewport.set(x, y, w, h);
+        }
+    }
 	
 	/** @return The number of tiles rendered during the last {@link #render(Scene)} call. */
 	public int getLastRenderedTileCount() {
@@ -105,8 +113,8 @@ public class View implements Renderable, Updateable {
 	}
 	
 	/** @return The current view port + offset. */
-	public Rectangle getViewportOffset() {
-		return new Rectangle(viewport.x + offset.x, viewport.y - offset.y, viewport.width, viewport.height);
+	public Vector2 getViewportOffset() {
+		return offset;
 	}
 
 }

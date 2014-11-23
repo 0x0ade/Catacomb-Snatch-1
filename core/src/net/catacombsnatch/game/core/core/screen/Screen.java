@@ -12,11 +12,12 @@ import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Screen {
+    protected static Pixmap pm = new Pixmap(1, 1, Format.RGBA8888);
 	protected static int SCALE = 1;
 	static {
 		setClearColor(Color.BLACK);
 	}
-	
+
 	public static void resize(int width, int height) {
 		if(width > 800 && height > 600) SCALE = 2;
 		else SCALE = 1;
@@ -92,7 +93,7 @@ public class Screen {
 		
 		return pixmap;
 	}
-	
+
 	/**
 	 * Creates a new raw 1x1 texture for background images.
 	 * 
@@ -100,15 +101,23 @@ public class Screen {
 	 * @return The newly generated Texture
 	 */
 	public static Texture createBlank(Color color) {
-		Pixmap pm = new Pixmap(1, 1, Format.RGBA8888);
-		
-		pm.setColor(color.r, color.g, color.b, color.a);
+        return createBlank(color.r, color.g, color.b, color.a);
+    }
+
+    /**
+     * Creates a new raw 1x1 texture for background images.
+     *
+     * @param r The red value used to fill the one and only pixel
+     * @param g The green value used to fill the one and only pixel
+     * @param b The blue value used to fill the one and only pixel
+     * @param a The value value used to fill the one and only pixel
+     * @return The newly generated Texture
+     */
+    public static Texture createBlank(float r, float g, float b, float a) {
+		pm.setColor(r, g, b, a);
 		pm.drawPixel(0, 0);
 		
-		Texture tex = new Texture(pm);
-		pm.dispose();
-		
-		return tex;
+		return new Texture(pm);
 	}
 	
 }

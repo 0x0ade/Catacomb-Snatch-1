@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Array;
 
 public class FileUtil {
 
@@ -21,10 +22,10 @@ public class FileUtil {
 	 * @return A list of all parsed lines (commented lines will be ignored)
 	 * @throws IOException
 	 */
-	public static List<String> readSimpleFile( FileHandle handle ) throws IOException {
+	public static Array<String> readSimpleFile( FileHandle handle ) throws IOException {
 		if(handle.isDirectory()) return null;
 		
-		List<String> lines = new ArrayList<String>();
+		Array<String> lines = new Array<String>();
 		BufferedReader br = new BufferedReader(handle.reader());
 		String line;
 		

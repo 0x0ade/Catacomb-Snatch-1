@@ -1,12 +1,14 @@
 package net.catacombsnatch.game.core.core.statistic;
 
+import com.badlogic.gdx.utils.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Statistics {
-	protected static List<Statistic> statistics;
+	protected static Array<Statistic> statistics;
 	static {
-		statistics = new ArrayList<Statistic>();
+		statistics = new Array<Statistic>();
 	}
 	
 	public Statistic getStatistic(Statistic statistic) {

@@ -3,6 +3,7 @@ package net.catacombsnatch.game.core.core.scene.scenes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.utils.Array;
 import net.catacombsnatch.game.core.core.Game;
 import net.catacombsnatch.game.core.core.entity.components.Position;
 import net.catacombsnatch.game.core.core.entity.components.Velocity;
@@ -29,7 +30,7 @@ public class GameScene extends Scene {
 	/** The campaign we are playing in */
 	protected Campaign campaign;
 	
-	protected List<View> views;
+	protected Array<View> views;
 	
 	public GameScene(LevelGenerator generator) {  // TODO complete
 		super();
@@ -76,7 +77,7 @@ public class GameScene extends Scene {
 			if(views == null) {
 				Level level = campaign.getCurrentLevel();
                 level.initialize(); // Initialize renderer(s) and Artemis world
-				views = new ArrayList<View>();
+				views = new Array<View>();
 				
 				for(Player player : campaign.getPlayers()) {
 					if(!(player instanceof LocalPlayer)) continue;
@@ -142,12 +143,12 @@ public class GameScene extends Scene {
 			
 			View view = views.get((int) p);
 			
-			view.setViewport(new Rectangle(n, quarters ? h / 2 : 0, m, quarters ? h / 2 : h ));
+			view.setViewport(n, quarters ? h / 2 : 0, m, quarters ? h / 2 : h);
 			view.update(resize);
 		}*/
 		
 		for(View view : views) {
-			view.setViewport(new Rectangle(0, 0, w, h));
+			view.setViewport(0, 0, w, h);
 			view.update(resize);
 		}
 	}

@@ -86,8 +86,7 @@ public abstract class Tile implements Tickable {
 	 * @return The tile, if found, otherwise null.
 	 */
 	public Tile getRelative(Direction dir) {
-		Vector2 vec = dir.getFor(position.x, position.y);
-		return level.getTile((int) vec.x, (int) vec.y);
+		return level.getTile((int) (position.x + dir.getX()), (int) (position.y + dir.getY()));
 	}
 	
 	public Tile getRelative(int x, int y) {

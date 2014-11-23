@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.ObjectMap;
 
 public class Achievements {
-	protected static Map<String, Achievement> achievements;
+	protected static ObjectMap<String, Achievement> achievements;
 	static {
-		achievements = new HashMap<String, Achievement>();
+		achievements = new ObjectMap<String, Achievement>();
 	}
 	
 	public static boolean register(String id, Class<? extends Achievement> achievement) {

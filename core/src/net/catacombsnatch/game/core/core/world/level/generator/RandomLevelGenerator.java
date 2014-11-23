@@ -3,6 +3,8 @@ package net.catacombsnatch.game.core.core.world.level.generator;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.badlogic.gdx.utils.IntMap;
+import com.badlogic.gdx.utils.ObjectMap;
 import net.catacombsnatch.game.core.core.world.Campaign;
 import net.catacombsnatch.game.core.core.world.Direction;
 import net.catacombsnatch.game.core.core.world.level.Level;
@@ -27,7 +29,7 @@ public class RandomLevelGenerator extends LevelGenerator {
 		public int width;
 		public int height;
 		public Type type;
-		public ArrayList<Direction> connected = new ArrayList<Direction>();
+		public Array<Direction> connected = new Array<Direction>();
 		
 		public Cell(int x, int y, int width, int height, Type type) {
 			this.x = x;
@@ -37,7 +39,7 @@ public class RandomLevelGenerator extends LevelGenerator {
 			this.type = type;
 		}
 		
-		public void generate(Level level, HashMap<Integer, Cell> cellMap) {
+		public void generate(Level level, IntMap<Cell> cellMap) {
 			for (int xx = x*width; xx < x*width+width; xx++) {
 				for (int yy = y*height; yy < y*height+height; yy++) {
 					Tile tile = level.getTile(xx, yy);
@@ -188,7 +190,7 @@ public class RandomLevelGenerator extends LevelGenerator {
 	public int segheight = 7;
 	public int width = segwidth*5;
 	public int height = segheight*7;
-	public HashMap<Integer, Cell> cellMap;
+	public IntMap<Cell> cellMap;
 	
 	@Override
 	public Level generate(Campaign campaign) {
@@ -210,7 +212,7 @@ public class RandomLevelGenerator extends LevelGenerator {
 		Level level = new Level(campaign, this, width+1, height+1);
 		
 		if (cellMap == null) {
-			cellMap = new HashMap<Integer, Cell>();
+			cellMap = new IntMap<Cell>();
 		} else {
 			cellMap.clear();
 		}

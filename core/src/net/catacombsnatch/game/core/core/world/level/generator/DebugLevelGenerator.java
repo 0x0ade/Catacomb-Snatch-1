@@ -12,7 +12,7 @@ public class DebugLevelGenerator extends LevelGenerator {
 
 	@Override
 	public Level generate(Campaign campaign) {
-		Level level = new Level(campaign, this, TileRegistry.getTypes().size(), 1);
+		Level level = new Level(campaign, this, TileRegistry.getTypes().size, 1);
 		
 		int i = 0;
 		for(String type : TileRegistry.getTypes()) {
