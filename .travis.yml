@@ -7,8 +7,8 @@ env:
     - secure: "klyzaKQjpBXjR/1RLD9iCFA6f7KL2zUfxzmQRrlrkksMt7hMyzC8PALkxs4u\nfGXUv0+Eq6cTacHHR0szhMb9hTJA8678qLmZxbAlHlqaSs++WpGaU59y5Ap2\n0e7C42JWgtO/p8CNt5NdznnISdYUWI4UyIoDnmyF2oCaNEP1SVs="
     - secure: "KrVr7iCqHp+DRPT6OP5f4QFYPRprEGJ2sbbz7IPh637TwH7YuOQqWBgATfja\nEAiNq08Q3rc5TSqOHLSrApx7wcfu4BjBe3xcRPwc7qdZm0xYjmhcT0rGhjkR\ni20x/etaRXDNnnlA/2JX9VRK+zxQf9rrSkAuCmW+WNBf1NXH6x8="
     matrix:
-    - ANDROID_SDKS=sysimg-16            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
-    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=sysimg-21            ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-21,sysimg-21 ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
 before_install:
     # Install base Android SDK
     - sudo apt-get update -qq
