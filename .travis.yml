@@ -1,13 +1,8 @@
 language: java
 jdk: oraclejdk7
 env:
-    global:
-    - "ARTIFACTS_AWS_REGION=us-east-1"
-    - "ARTIFACTS_S3_BUCKET=builds.catacombsnatch.net"
-    - secure: "klyzaKQjpBXjR/1RLD9iCFA6f7KL2zUfxzmQRrlrkksMt7hMyzC8PALkxs4u\nfGXUv0+Eq6cTacHHR0szhMb9hTJA8678qLmZxbAlHlqaSs++WpGaU59y5Ap2\n0e7C42JWgtO/p8CNt5NdznnISdYUWI4UyIoDnmyF2oCaNEP1SVs="
-    - secure: "KrVr7iCqHp+DRPT6OP5f4QFYPRprEGJ2sbbz7IPh637TwH7YuOQqWBgATfja\nEAiNq08Q3rc5TSqOHLSrApx7wcfu4BjBe3xcRPwc7qdZm0xYjmhcT0rGhjkR\ni20x/etaRXDNnnlA/2JX9VRK+zxQf9rrSkAuCmW+WNBf1NXH6x8="
     matrix:
-    - ANDROID_SDKS=android-21,sysimg-21 ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
 before_install:
     # Install base Android SDK
     - sudo apt-get update -qq
@@ -18,11 +13,6 @@ before_install:
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
     # Install required Android components.
-    - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --filter platform-tools,android-21,extra-android-support,$ANDROID_SDKS --no-ui --force
+    - echo yes | android update sdk --filter platform-tools,android-21,extra-android-support --no-ui --force
 
 #Config found on http://rkistner.github.com/android/2013/02/05/android-builds-on-travis-ci/
-
-before_script:
-    - "gem install travis-artifacts"
-after_test:
-    - "travis-artifacts upload --target-path artifacts/$TRAVIS_BUILD_ID/$TRAVIS_JOB_ID"
