@@ -10,8 +10,8 @@ import com.badlogic.gdx.backends.android.*;
 import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
 import com.badlogic.gdx.controllers.mappings.Ouya;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import net.catacombsnatch.game.core.core.Game;
-import net.catacombsnatch.game.core.core.PlatformDependent;
+import net.catacombsnatch.game.core.Game;
+import net.catacombsnatch.game.core.PlatformDependent;
 
 import android.os.Bundle;
 
