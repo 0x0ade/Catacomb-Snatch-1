@@ -4,7 +4,7 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "net.catacombsnatch.game.desktop.CatacombSnatchGameDesktop"
-project.ext.assetsDir = new File("assets");
+project.ext.assetsDir = new File("../core/assets");
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
