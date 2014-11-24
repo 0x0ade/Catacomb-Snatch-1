@@ -11,7 +11,7 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
 
-    version = '0.1-SNAPSHOT'
+    version = "0.1-$System.env.BUILD_NUMBER"
     ext {
         appName = 'Catacomb-Snatch'
         gdxVersion = '1.4.1'

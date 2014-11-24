@@ -1,8 +1,13 @@
 language: java
 jdk: oraclejdk7
 env:
+    global:
+       #- "A=B"
     matrix:
-    - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+        - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+secure:
+    - "F2PT1BN/wEk8Nfn3BPS52TZ2xBLkoUTeCnmLQ+RWxJ0pHemI43+YpLL/lCrKkxHiwkPpS8PhyAhtxnJVAObMW5CvlliIKZZz01NPhbb9N3HW/5PfphLNB3GYlxF9dvkqJTPIN9K8XBIaMipxEBO8aRWZR1A9sbLm2VX1r5fwHZw="
+    - "Fj+4oEnBqxHq7bQ2NMN4vTqWczEHSSizpcn56G1eihPokG6c/ktY0yeSx/CSTH0h9K0dY/eeDNoPRWlwGvVqqPMQXgfLTuGMLkDHgIKP1FBOvW4qMNzED/+Feo+iyvvVS599W57gesOFJ14MkyPLnzrh+jMVRCn6+1qcwx/A0Ss="
 before_install:
     # Install base Android SDK
     - sudo apt-get update -qq
@@ -19,3 +24,5 @@ before_install:
 script:
     - ./gradlew build
     - ./gradlew dist
+after_success:
+    "curl --ftp-create-dirs -T desktop/build/libs/desktop-0.1-$BUILD_NUMBER.jar -u $FTP_USER:$FTP_PASSWORD ftp://ade-test.bugs3.com/travis/"
