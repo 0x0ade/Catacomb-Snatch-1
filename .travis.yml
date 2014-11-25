@@ -23,4 +23,4 @@ script:
     - ./gradlew build
     - ./gradlew dist
 after_success:
-    "curl --ftp-create-dirs -T $TRAVIS_BUILD_DIR/desktop/build/libs/desktop-0.1-$BUILD_NUMBER.jar -u ade-test_travis:$FTP_PASSWORD ftp://ade-test.square7.ch/"
+    "curl --ftp-create-dirs -T $TRAVIS_BUILD_DIR/desktop/build/libs/desktop-0.1-$BUILD_NUMBER.jar -u u282740416.travis:$FTP_PASSWORD ftp://ftp.ade-test.tk/"
