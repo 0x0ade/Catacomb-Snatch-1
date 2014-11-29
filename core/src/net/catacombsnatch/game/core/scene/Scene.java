@@ -1,6 +1,8 @@
 package net.catacombsnatch.game.core.scene;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import net.catacombsnatch.game.core.event.EventManager;
 import net.catacombsnatch.game.core.resource.Art;
@@ -22,7 +24,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class Scene extends Stage implements Updateable, Tickable {
 	/** The background image */
-	protected Texture background;
+	protected TextureRegion background;
+    protected Color backgroundColor = new Color(1f, 1f, 1f, 1f);
 	
 	private boolean exit = false;
 	private boolean drawBackground = true;
@@ -60,11 +63,6 @@ public class Scene extends Stage implements Updateable, Tickable {
 	 */
 	public void exit() {
 		this.dispose();
-        if (background != null && !background.isManaged()) {
-            //Probably a texture created on the fly used only here.
-            //It should be safe to dispose such a texture.
-            background.dispose();
-        }
 		exit = true;
 	}
 	
@@ -76,6 +74,7 @@ public class Scene extends Stage implements Updateable, Tickable {
 		// Draw background
 		if(drawBackground && background != null) {
 			getSpriteBatch().begin();
+            getSpriteBatch().setColor(backgroundColor);
 			getSpriteBatch().draw(background, 0, 0, Screen.getWidth(), Screen.getHeight());
 			getSpriteBatch().end();
 		}
@@ -110,9 +109,18 @@ public class Scene extends Stage implements Updateable, Tickable {
 	 * 
 	 * @param background The background texture to set
 	 */
-	public void setBackground(Texture background) {
+	public void setBackground(TextureRegion background) {
 		this.background = background;
 	}
+
+    /**
+     * Returns the background color as mutable object
+     *
+     * @return Modifiable color instance
+     */
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
 	
 	public boolean shouldDrawBackground() {
 		return drawBackground;

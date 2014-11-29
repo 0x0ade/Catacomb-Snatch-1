@@ -1,5 +1,7 @@
 package net.catacombsnatch.game.core.world.level;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import net.catacombsnatch.game.core.scene.Scene;
 import net.catacombsnatch.game.core.screen.Screen;
 import net.catacombsnatch.game.core.world.tile.Tile;
@@ -15,9 +17,8 @@ public class Minimap implements Renderable {
 	protected Level level;
 	protected View view;
 	protected Sprite sprite;
-	
-	protected Texture map;
-	protected Pixmap pm;
+
+    protected static TextureRegion pixel;
 	
 	public Minimap(Level level, View view) {
 		this.level = level;
@@ -25,8 +26,9 @@ public class Minimap implements Renderable {
 		
 		sprite = new Sprite(Art.skin.getAtlas().findRegion("minimap-frame"));
 
-        pm = new Pixmap(40, 40, Pixmap.Format.RGBA8888);
-		map = new Texture(pm, false);
+        if (pixel == null) {
+            pixel = Art.skin.getAtlas().findRegion("white");
+        }
 	}
 	
 	Rectangle vp = new Rectangle();
@@ -41,19 +43,30 @@ public class Minimap implements Renderable {
 		
 		vp.x -= Screen.getWidth()/2;
 		vp.y += Screen.getHeight()/2;
-		
+
 		for (Tile tile : level.getTiles()) {
 			if(tile == null) continue;
-			
-			pm.drawPixel((int) tile.getPosition().x - (int) (vp.x / Tile.WIDTH), (int) tile.getPosition().y - (int) (vp.height / Tile.HEIGHT) - (int) (vp.y / Tile.HEIGHT), 
-					tile.getMinimapColor());
+
+            float px = sprite.getX() + 6;
+            px += ((int)(tile.getPosition().x - (vp.x / Tile.WIDTH))) * 2f;
+            float py = sprite.getY() + 5;
+            py += ((int)(tile.getPosition().y - (vp.height / Tile.HEIGHT) - (vp.y / Tile.HEIGHT))) * 2f;
+
+            if (px >= sprite.getX() + 6 && py >= sprite.getY() + 5 &&
+                    px < sprite.getX() + 86 && py < sprite.getY() + 85) {
+                int color = tile.getMinimapColor();
+                scene.getSpriteBatch().setColor(
+                        ((color & 0xff000000) >>> 24) / 255f,
+                        ((color & 0x00ff0000) >>> 16) / 255f,
+                        ((color & 0x0000ff00) >>> 8) / 255f,
+                        1f);
+                scene.getSpriteBatch().draw(pixel, px, py, 2f, 2f);
+            }
 		}
 		
 		// TODO add entity icons
-		
-		map.draw(pm, 0, 0);
 
-		scene.getSpriteBatch().draw(map, sprite.getX() + 6, sprite.getY() + 5 + 80, 80, -80);
+        scene.getSpriteBatch().setColor(1f, 1f, 1f, 1f);
 	}
 	
 	public void update(boolean resize) {

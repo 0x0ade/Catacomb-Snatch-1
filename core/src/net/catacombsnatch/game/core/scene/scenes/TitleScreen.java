@@ -61,7 +61,9 @@ public class TitleScreen extends MenuScene {
 	public void tick(float delta) {
 		super.tick(delta);
 		
-		getSpriteBatch().draw(Art.logo, (Screen.getWidth() - Art.logo.getWidth()) / 2, Screen.getHeight() - (int) (1.5f * Art.logo.getHeight()));
+		getSpriteBatch().draw(Art.logo,
+                (Screen.getWidth() - Art.logo.getTexture().getWidth()) / 2,
+                Screen.getHeight() - (int) (1.5f * Art.logo.getTexture().getHeight()));
 		
 		drawCharacter();
 	}

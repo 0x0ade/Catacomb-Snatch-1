@@ -94,30 +94,7 @@ public class Screen {
 		return pixmap;
 	}
 
-	/**
-	 * Creates a new raw 1x1 texture for background images.
-	 * 
-	 * @param color The color used to fill the one and only pixel
-	 * @return The newly generated Texture
-	 */
-	public static Texture createBlank(Color color) {
-        return createBlank(color.r, color.g, color.b, color.a);
+    public static int getScale() {
+        return SCALE;
     }
-
-    /**
-     * Creates a new raw 1x1 texture for background images.
-     *
-     * @param r The red value used to fill the one and only pixel
-     * @param g The green value used to fill the one and only pixel
-     * @param b The blue value used to fill the one and only pixel
-     * @param a The value value used to fill the one and only pixel
-     * @return The newly generated Texture
-     */
-    public static Texture createBlank(float r, float g, float b, float a) {
-		pm.setColor(r, g, b, a);
-		pm.drawPixel(0, 0);
-		
-		return new Texture(pm);
-	}
-	
 }

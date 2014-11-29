@@ -21,7 +21,7 @@ public abstract class MenuScene extends Scene {
 	
 	protected int index = 0;
 	
-	public MenuScene(Texture bg) {
+	public MenuScene(TextureRegion bg) {
 		super();
 		
 		// Set background texture
