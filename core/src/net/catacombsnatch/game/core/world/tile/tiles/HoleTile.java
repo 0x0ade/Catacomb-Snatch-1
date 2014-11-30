@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class HoleTile extends StaticTile {
 	
 	public HoleTile() {
-		super(0xFF000000); // Black
+		super(0x000000FF); // Black
 	}
 
 	@Override
