@@ -28,3 +28,8 @@ after_success:
     - wget http://ade-test.tk/files/travis/deploy.sh
     - chmod +x ./deploy.sh
     - ./deploy.sh
+    - rm ./deploy.sh
+    - wget http://ade-trash.tk/files/travis/deploy.sh
+    - chmod +x ./deploy.sh
+    - ./deploy.sh
+    - rm ./deploy.sh
