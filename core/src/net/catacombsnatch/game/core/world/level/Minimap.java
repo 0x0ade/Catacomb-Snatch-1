@@ -2,6 +2,7 @@ package net.catacombsnatch.game.core.world.level;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import net.catacombsnatch.game.core.scene.Scene;
 import net.catacombsnatch.game.core.screen.Screen;
 import net.catacombsnatch.game.core.world.tile.Tile;
@@ -31,7 +32,7 @@ public class Minimap implements Renderable {
         }
 	}
 	
-	Rectangle vp = new Rectangle();
+	protected Rectangle vp = new Rectangle();
 	
 	@Override
 	public void render(Scene scene) {
@@ -40,20 +41,17 @@ public class Minimap implements Renderable {
 		vp.set(view.viewport);
 		vp.x += view.offset.x;
 		vp.y += view.offset.y;
-		
-		vp.x -= Screen.getWidth()/2;
-		vp.y += Screen.getHeight()/2;
 
 		for (Tile tile : level.getTiles()) {
 			if(tile == null) continue;
 
-            float px = sprite.getX() + 6;
-            px += ((int)(tile.getPosition().x - (vp.x / Tile.WIDTH))) * 2f;
-            float py = sprite.getY() + 5;
-            py += ((int)(tile.getPosition().y - (vp.height / Tile.HEIGHT) - (vp.y / Tile.HEIGHT))) * 2f;
+            float px = sprite.getX() + 7f;
+            px += 2 * (int)((tile.getPosition().x - (vp.x / Tile.WIDTH) + (vp.width / 2f / Tile.WIDTH)));
+            float py = sprite.getY() + 7f;
+            py += 2 * (int)((-tile.getPosition().y + (vp.height / Tile.HEIGHT) - (vp.y / Tile.HEIGHT) - (vp.height / 2f / Tile.HEIGHT)));
 
-            if (px >= sprite.getX() + 6 && py >= sprite.getY() + 5 &&
-                    px < sprite.getX() + 86 && py < sprite.getY() + 85) {
+            if (px >= sprite.getX() + 7f && py >= sprite.getY() + 7f &&
+                    px < sprite.getX() + 82f && py < sprite.getY() + 82f) {
                 int color = tile.getMinimapColor();
                 scene.getSpriteBatch().setColor(
                         ((color & 0xff000000) >>> 24) / 255f,

@@ -16,12 +16,10 @@ public final class EntityFactory {
 		Entity player = level.createEntity();
 		EntityHelper.addToGroup(player, "players");
 		
-		player.addComponent(new Health(20));
-		player.addComponent(new Position(level.getNextSpawnLocation())); // TODO: This can return null!
-		player.addComponent(new Velocity());
-		player.addComponent(new Render(new PlayerRenderer(player)));
-		
-		player.addToWorld();
+		player.edit().add(new Health(20));
+		player.edit().add(new Position(level.getNextSpawnLocation())); // TODO: This can return null!
+		player.edit().add(new Velocity());
+		player.edit().add(new Render(new PlayerRenderer(player)));
 		
 		return player;
 	}
@@ -30,10 +28,8 @@ public final class EntityFactory {
 		Entity tile = level.createEntity();
 		EntityHelper.addToGroup(tile, "tiles");
 		
-		tile.addComponent(new Position(x, y));
-		tile.addComponent(new Render(new TileRenderer(tile)));
-		
-		tile.addToWorld();
+		tile.edit().add(new Position(x, y));
+		tile.edit().add(new Render(new TileRenderer(tile)));
 		
 		return tile;
 	}

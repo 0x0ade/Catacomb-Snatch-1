@@ -45,8 +45,8 @@ public class View implements Renderable, Updateable {
 			// Draw tiles
 			rendered = 0; // Reset counter
 			
-			for(float y = (viewport.y - offset.y) / Tile.HEIGHT - 4; y <= (viewport.height - offset.y) / Tile.HEIGHT + 2; y++) {
-				for(float x = (viewport.x + offset.x) / Tile.WIDTH - 2; x < (viewport.width + offset.x) / Tile.WIDTH + 4; x++) {
+			for(float y = (viewport.y - viewport.height - offset.y) / Tile.HEIGHT - 2; y <= -(viewport.y + offset.y) / Tile.HEIGHT + 4; y++) {
+				for(float x = (viewport.x + offset.x) / Tile.WIDTH - 2; x < (viewport.x + viewport.width + offset.x) / Tile.WIDTH + 2; x++) {
 					Tile tile = level.getTile((int) x, (int) y);
 					
 					if(tile != null && tile.shouldRender(this)) {
@@ -70,6 +70,9 @@ public class View implements Renderable, Updateable {
 	@Override
 	public void update(boolean resize) {
 		if(viewport == null || !resize) return;
+
+        viewport.x -= viewport.width / 2f;
+        viewport.y -= viewport.height / 2f;
 		
 		panel.setPosition((viewport.getWidth() - panel.getWidth()) / 2, viewport.getHeight() - panel.getHeight());
 		
@@ -111,10 +114,11 @@ public class View implements Renderable, Updateable {
 	public Rectangle getViewport() {
 		return viewport;
 	}
-	
+
+    protected Vector2 viewportOffset = new Vector2();
 	/** @return The current view port + offset. */
 	public Vector2 getViewportOffset() {
-		return offset;
+		return viewportOffset.set(offset).add(viewport.x, viewport.y);
 	}
 
 }
